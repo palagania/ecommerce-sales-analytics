@@ -1,15 +1,28 @@
 # 🛒 E-Commerce Sales & Customer Analytics with SQL and Power BI  
 
-## 📌 Project Overview  
-This project demonstrates end-to-end **Sales and Customer Analytics** using **PostgreSQL, Python, and Power BI**.  
-The dataset used is the popular **Sample Superstore dataset (Kaggle)**, which was cleaned, transformed, and loaded into PostgreSQL for analytics and visualization.  
+## 📌 Project Overview
 
-The pipeline covers:  
-✅ Database schema design  
-✅ Data cleaning & splitting with Python (ETL)  
-✅ Loading CSV data into PostgreSQL  
-✅ SQL analytics queries (sales, profit, customer segmentation)  
-✅ Visualization in Power BI  
+This project demonstrates an end-to-end Data Engineering & Analytics pipeline using Python, PostgreSQL, and Power BI on the popular Sample Superstore dataset (Kaggle).
+
+We clean and split the dataset into customers, products, and orders tables, load them into PostgreSQL, and run SQL queries for business insights such as sales by region, profit by category, and top customers. Finally, we visualize the results in Power BI dashboards.
+
+## 🛠️ Tech Stack
+
+Database: PostgreSQL 17
+
+ETL & Preprocessing: Python (pandas)
+
+Visualization: Power BI
+
+Tools: pgAdmin 4, VS Code, GitHub
+
+## 🗃️ Database Schema
+
+customers → customer_id, customer_name, segment, region, state, postal_code
+
+products → product_id, category, sub_category, product_name
+
+orders → order_id, order_date, ship_date, ship_mode, customer_id, product_id, sales, quantity, discount, profit 
 
 ---
 
