@@ -1,76 +1,39 @@
 import pandas as pd
+import os
 
-# -----------------------------
-# Load the dataset
-# -----------------------------
-data = pd.read_csv("Sample - Superstore.csv", encoding="latin1")
+# Base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
-# -----------------------------
-# Create Customers table
-# -----------------------------
+# Load Superstore dataset
+data = pd.read_csv(os.path.join(DATA_DIR, "Sample - Superstore.csv"), encoding="latin1")
+
+# -------------------
+# Split into customers
+# -------------------
 customers = data[[
-    "Customer ID", "Customer Name", "Segment", 
+    "Customer ID", "Customer Name", "Segment",
     "Country", "City", "State", "Postal Code", "Region"
-]]
+]].drop_duplicates()
 
-# Clean + Deduplicate
-customers["Customer ID"] = customers["Customer ID"].astype(str).str.strip()
-customers = customers.drop_duplicates(subset=["Customer ID"], keep="first")
-
-# Rename for PostgreSQL
-customers = customers.rename(columns={
-    "Customer ID": "customer_id",
-    "Customer Name": "customer_name",
-    "Segment": "segment",
-    "Country": "country",
-    "City": "city",
-    "State": "state",
-    "Postal Code": "postal_code",
-    "Region": "region"
-})
-
-customers.to_csv("customers.csv", index=False)
-
-# -----------------------------
-# Create Products table
-# -----------------------------
+# -------------------
+# Split into products
+# -------------------
 products = data[[
     "Product ID", "Category", "Sub-Category", "Product Name"
-]]
+]].drop_duplicates()
 
-products["Product ID"] = products["Product ID"].astype(str).str.strip()
-products = products.drop_duplicates(subset=["Product ID"], keep="first")
-
-products = products.rename(columns={
-    "Product ID": "product_id",
-    "Category": "category",
-    "Sub-Category": "sub_category",
-    "Product Name": "product_name"
-})
-
-products.to_csv("products.csv", index=False)
-
-# -----------------------------
-# Create Orders table
-# -----------------------------
+# -------------------
+# Split into orders
+# -------------------
 orders = data[[
     "Order ID", "Order Date", "Ship Date", "Ship Mode",
     "Customer ID", "Product ID", "Sales", "Quantity", "Discount", "Profit"
 ]]
 
-orders = orders.rename(columns={
-    "Order ID": "order_id",
-    "Order Date": "order_date",
-    "Ship Date": "ship_date",
-    "Ship Mode": "ship_mode",
-    "Customer ID": "customer_id",
-    "Product ID": "product_id",
-    "Sales": "sales",
-    "Quantity": "quantity",
-    "Discount": "discount",
-    "Profit": "profit"
-})
+# Save to data/ folder
+customers.to_csv(os.path.join(DATA_DIR, "customers.csv"), index=False)
+products.to_csv(os.path.join(DATA_DIR, "products.csv"), index=False)
+orders.to_csv(os.path.join(DATA_DIR, "orders.csv"), index=False)
 
-orders.to_csv("orders.csv", index=False)
-
-print("✅ Customers, Products, and Orders CSV files created successfully!")
+print("✅ Split completed! customers.csv, products.csv, orders.csv saved in data/")
