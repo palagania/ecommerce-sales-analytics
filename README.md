@@ -48,3 +48,29 @@ ecommerce-sales-analytics/
 │ └── ecommerce_dashboard.pbix # Power BI dashboard
 │
 └── README.md # Project documentation
+
+## 🚀 How to Run
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/palagania/ecommerce-sales-analytics.git
+   cd ecommerce-sales-analytics
+
+## 📊 Power BI Dashboard
+
+The final step of this project was to create an **interactive Power BI dashboard** to visualize key business insights such as:
+
+- ✅ Total Sales, Profit, Orders, and Quantity  
+- ✅ Profit by Product Category  
+- ✅ Top Performing Customers  
+- ✅ Regional & Segment-based Analysis  
+
+### 🔗 Dashboard File
+You can download and explore the dashboard here:  
+[`ecommerce_dashboard.pbix`](powerbi/ecommerce_dashboard.pbix)
+
+## 📊 Dashboard Preview  
+
+Here’s a glimpse of the interactive Power BI dashboard:  
+
+![E-Commerce Dashboard](powerbi/dashboard_preview.png)
